@@ -1,0 +1,13 @@
+{
+  "name": "GoldFlow AI — XAUUSD",
+  "short_name": "GoldFlow AI",
+  "description": "XAUUSD market monitor and experimental trade setup engine.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#080c17",
+  "theme_color": "#0b1020",
+  "icons": [
+    {"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}

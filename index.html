@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b1020">
+<meta name="description" content="GoldFlow AI — XAUUSD market monitor and transparent trade-setup engine.">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>GoldFlow AI · XAUUSD</title>
+<style>
+:root{color-scheme:dark;--bg:#080c17;--panel:#11182a;--panel2:#151e33;--line:#26324a;--text:#eef3ff;--muted:#93a2bf;--gold:#f2c66d;--green:#3bd6a0;--red:#ff687d;--blue:#8ab4ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#14203a 0,#080c17 48%);color:var(--text);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:env(safe-area-inset-top) 14px calc(22px + env(safe-area-inset-bottom))}
+.wrap{max-width:900px;margin:auto}.top{display:flex;justify-content:space-between;align-items:center;padding:20px 2px 16px;gap:12px}.brand{display:flex;gap:10px;align-items:center}.logo{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,#f7dc91,#b77b27);display:grid;place-items:center;color:#1a1720;font-size:23px;font-weight:900}.eyebrow{font-size:11px;letter-spacing:1.8px;color:var(--gold);font-weight:800}.brand h1{font-size:21px;margin:1px 0 0}.status{font-size:11px;border:1px solid var(--line);padding:7px 9px;border-radius:99px;color:var(--muted);white-space:nowrap}.status:before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin:0 6px 1px 0}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{background:linear-gradient(145deg,rgba(21,30,51,.96),rgba(13,19,34,.96));border:1px solid var(--line);border-radius:18px;padding:16px;min-width:0;box-shadow:0 10px 30px #0002}.wide{grid-column:1/-1}.label{color:var(--muted);font-size:11px;letter-spacing:1.1px;text-transform:uppercase;font-weight:700}.price{font-size:32px;font-weight:800;letter-spacing:-1px;margin:5px 0 2px}.change{font-size:12px;color:var(--muted)}.gold{color:var(--gold)}.section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:10px}.section-title h2{font-size:15px;margin:0}.pill{font-size:10px;border-radius:99px;padding:5px 8px;background:#202b42;color:var(--muted);white-space:nowrap}.signal{display:flex;justify-content:space-between;align-items:center;gap:10px}.signal-word{font-size:27px;font-weight:900;letter-spacing:.4px}.neutral{color:var(--gold)}.buy{color:var(--green)}.sell{color:var(--red)}.meter{height:6px;background:#27334a;border-radius:99px;overflow:hidden;margin:10px 0 5px}.meter span{display:block;height:100%;width:0;background:var(--gold);transition:width .3s}.small{font-size:12px;color:var(--muted)}.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:13px}.stat{padding:11px;background:#0b1221;border:1px solid #202b40;border-radius:12px}.stat b{display:block;font-size:16px;margin-top:3px;overflow-wrap:anywhere}.levels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.level{padding:11px;border:1px solid var(--line);border-radius:12px;background:#0c1322}.level b{display:block;margin-top:4px;font-size:16px}.reason{margin:8px 0 0;padding-left:18px;color:#c2cde2;font-size:13px}.reason li{margin:5px 0}.btnrow{display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid #35425d;background:#1b2740;color:var(--text);border-radius:11px;padding:10px 13px;font-weight:700;font-size:12px;cursor:pointer}.btn.primary{background:var(--gold);color:#1b1720;border-color:var(--gold)}.chartbox{height:390px;overflow:hidden;border-radius:12px;background:#0a1020}.chartbox iframe{width:100%;height:100%;border:0}.footer{padding:18px 4px 6px;color:var(--muted);font-size:11px}.warning{border-color:#66522d;background:linear-gradient(135deg,#241d12,#141827)}.warning p{font-size:12px;color:#d9cba9;margin:7px 0 0}.source{color:var(--blue);text-decoration:none}.hidden{display:none}@media(max-width:480px){.grid{gap:9px}.card{padding:13px;border-radius:15px}.price{font-size:28px}.brand h1{font-size:18px}.chartbox{height:330px}.signal-word{font-size:23px}.top{padding-top:16px}.stats{gap:8px}.level b{font-size:14px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><div class="brand"><div class="logo">₲</div><div><div class="eyebrow">MARKET INTELLIGENCE</div><h1>GoldFlow AI</h1></div></div><div class="status" id="status">Connecting</div></header>
+<main class="grid">
+<section class="card"><div class="label">XAU · Spot gold / USD</div><div class="price" id="price">Loading…</div><div class="change" id="priceMeta">Fetching public spot quote</div><div class="small" style="margin-top:12px">Last update <span id="updated">—</span></div></section>
+<section class="card"><div class="label">Setup engine</div><div class="signal" style="margin-top:10px"><div class="signal-word neutral" id="signal">WAIT</div><span class="pill" id="timeframe">M5 MODEL</span></div><div class="meter"><span id="confidenceBar"></span></div><div class="small"><span id="confidence">0</span>% model strength · not a win probability</div><div class="small" id="signalSummary" style="margin-top:9px">Collecting price observations…</div></section>
+<section class="card wide"><div class="section-title"><h2>Trade plan</h2><span class="pill" id="planState">WAIT FOR DATA</span></div><div class="levels">
+<div class="level"><span class="label">Entry zone</span><b id="entry">—</b></div><div class="level"><span class="label">Stop loss</span><b id="sl">—</b></div><div class="level"><span class="label">Take profit 1</span><b id="tp1">—</b></div><div class="level"><span class="label">Take profit 2</span><b id="tp2">—</b></div></div>
+<div class="stats"><div class="stat"><span class="label">Short-term momentum</span><b id="momentum">Insufficient data</b></div><div class="stat"><span class="label">Observed range</span><b id="range">—</b></div><div class="stat"><span class="label">Reward / risk to TP1</span><b id="rr">—</b></div><div class="stat"><span class="label">Observations</span><b id="samples">0</b></div></div><ul class="reason" id="reasons"><li>Waiting for market observations.</li></ul></section>
+<section class="card wide"><div class="section-title"><h2>Live chart</h2><span class="pill">TradingView</span></div><div class="chartbox"><iframe title="XAUUSD chart" src="https://s.tradingview.com/widgetembed/?frameElementId=goldflow_chart&symbol=OANDA%3AXAUUSD&interval=5&hidesidetoolbar=1&symboledit=0&saveimage=0&toolbarbg=%230b1020&theme=dark&style=1&timezone=Etc%2FUTC&withdateranges=1&hideideas=1&studies=%5B%5D&hidevolume=0&allow_symbol_change=0&details=0&hotlist=0&calendar=0" loading="lazy" allowtransparency="true" scrolling="no"></iframe></div><p class="small">Chart supplied by TradingView. The chart's feed and the quote source below may differ slightly.</p></section>
+<section class="card wide"><div class="section-title"><h2>Market context</h2><span class="pill">Transparent model</span></div><p class="small" id="context">This first version uses sampled public spot prices. It does not yet have bid/ask trades, a footprint feed, or a real order book.</p><div class="btnrow"><button class="btn primary" id="refresh">Refresh quote</button><button class="btn" id="reset">Reset observations</button><button class="btn" id="install" hidden>Install app</button></div></section>
+<section class="card wide warning"><div class="section-title"><h2>Important data limitation</h2><span class="pill">Read before trading</span></div><p>Spot-price polling cannot calculate true bid/ask delta, institutional absorption, or a reliable footprint. Signals are experimental decision support, not financial advice. Do not place a live trade based only on this prototype. Verify prices, spread, and levels in your broker terminal.</p></section>
+</main>
+<footer class="footer">GoldFlow AI · prototype v0.1 · Quote source: public Gold API endpoint when available. If the feed fails, the app will show an error instead of inventing a price. Not affiliated with a broker.</footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+let observations=[], timer=null, deferredInstall=null, lastPrice=null;
+const fmt=n=>Number.isFinite(n)?n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}):'—';
+function setStatus(text,ok=false){$('status').textContent=text;$('status').style.color=ok?'#3bd6a0':'#93a2bf';}
+async function getQuote(){
+  $('refresh').disabled=true;
+  try{
+    const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),8000);
+    const res=await fetch('https://api.gold-api.com/price/XAU',{cache:'no-store',signal:controller.signal});clearTimeout(timeout);
+    if(!res.ok)throw new Error('Quote provider returned '+res.status);
+    const data=await res.json();
+    const price=Number(data.price);
+    if(!Number.isFinite(price)||price<=0)throw new Error('Invalid quote payload');
+    const now=Date.now();
+    if(!observations.length||now-observations[observations.length-1].t>=8000) observations.push({p:price,t:now});
+    observations=observations.slice(-180);lastPrice=price;
+    $('price').textContent='$'+fmt(price);$('priceMeta').textContent='Public spot quote · '+(data.name||'XAU');$('updated').textContent=new Date(now).toLocaleTimeString();
+    setStatus('Feed connected',true);analyze();
+  }catch(e){setStatus('Feed unavailable');$('priceMeta').textContent='Could not fetch live quote. Check connection or retry.';$('signalSummary').textContent='No current quote; signals disabled.';$('signal').textContent='WAIT';$('signal').className='signal-word neutral';$('planState').textContent='NO LIVE DATA';}
+  finally{$('refresh').disabled=false;}
+}
+function analyze(){
+  const n=observations.length;$('samples').textContent=n;
+  if(n<8){$('signal').textContent='WAIT';$('signal').className='signal-word neutral';$('confidence').textContent='0';$('confidenceBar').style.width='0%';$('signalSummary').textContent='Building a short rolling price sample. Keep the app open.';$('planState').textContent='COLLECTING';$('momentum').textContent='Insufficient data';$('range').textContent='—';$('reasons').innerHTML='<li>Need at least 8 observations before evaluating momentum.</li><li>Polling is not a substitute for tick-by-tick market data.</li>';return;}
+  const prices=observations.map(x=>x.p), cur=prices[n-1], old=prices[Math.max(0,n-6)], recent=prices.slice(-12);
+  const move=cur-old, diffs=[];for(let i=1;i<recent.length;i++)diffs.push(Math.abs(recent[i]-recent[i-1]));
+  const avgStep=diffs.reduce((a,b)=>a+b,0)/Math.max(1,diffs.length);
+  const hi=Math.max(...recent),lo=Math.min(...recent),range=hi-lo;
+  const threshold=Math.max(avgStep*1.7,cur*0.000035);
+  const direction=move>threshold?'BUY':move< -threshold?'SELL':'WAIT';
+  const strength=Math.min(85,Math.round(25+Math.abs(move)/Math.max(threshold,.01)*12));
+  $('signal').textContent=direction;$('signal').className='signal-word '+(direction==='BUY'?'buy':direction==='SELL'?'sell':'neutral');
+  $('confidence').textContent=direction==='WAIT'?Math.min(30,Math.round(100*Math.abs(move)/Math.max(threshold,.01))):strength;
+  $('confidenceBar').style.width=$('confidence').textContent+'%';
+  $('momentum').textContent=(move>0?'+':'')+fmt(move)+' USD '+(move>0?'up':move<0?'down':'flat');
+  $('range').textContent=fmt(lo)+' – '+fmt(hi);
+  const buffer=Math.max(avgStep*1.5,cur*0.00015), risk=Math.max(range*.55,buffer*2);
+  if(direction==='WAIT'){
+    $('entry').textContent='—';$('sl').textContent='—';$('tp1').textContent='—';$('tp2').textContent='—';$('rr').textContent='—';$('planState').textContent='NO TRADE';
+    $('signalSummary').textContent='No clear short-term push in the sampled prices.';
+  }else{
+    const entry=cur, sl=direction==='BUY'?cur-risk:cur+risk,tp1=direction==='BUY'?cur+risk*1.4:cur-risk*1.4,tp2=direction==='BUY'?cur+risk*2:cur-risk*2;
+    $('entry').textContent=fmt(entry);$('sl').textContent=fmt(sl);$('tp1').textContent=fmt(tp1);$('tp2').textContent=fmt(tp2);$('rr').textContent='1.4 : 1';$('planState').textContent='EXPERIMENTAL';
+    $('signalSummary').textContent=direction+' bias from recent sampled price movement only — not order-flow confirmation.';
+  }
+  $('reasons').innerHTML=`<li>Sampled move over recent observations: <b>${move>0?'+':''}${fmt(move)} USD</b>.</li><li>Recent sampled range: <b>${fmt(range)} USD</b>; average adjacent price change: <b>${fmt(avgStep)} USD</b>.</li><li>${direction==='WAIT'?'No directional threshold crossed; stay flat.':'Directional momentum threshold crossed, but this is not a verified order-flow setup.'}</li><li>Stop and target distances are provisional volatility estimates, not support/resistance levels.</li>`;
+  $('context').textContent='Model uses public spot-price snapshots and a simple momentum/volatility heuristic. It does NOT measure aggressor-side volume, order-book depth, CVD, footprint imbalances, or institutional positions.';
+}
+$('refresh').addEventListener('click',getQuote);
+$('reset').addEventListener('click',()=>{observations=[];$('samples').textContent='0';$('signal').textContent='WAIT';$('planState').textContent='COLLECTING';$('signalSummary').textContent='Observations reset. Collecting new prices…';getQuote();});
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;$('install').hidden=false;});
+$('install').addEventListener('click',async()=>{if(!deferredInstall)return;deferredInstall.prompt();await deferredInstall.userChoice;deferredInstall=null;$('install').hidden=true;});
+if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+getQuote();timer=setInterval(getQuote,15000);
+</script>
+</body></html>
