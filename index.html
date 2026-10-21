@@ -2,87 +2,88 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0b1020">
-<meta name="description" content="GoldFlow AI — XAUUSD market monitor and transparent trade-setup engine.">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090b10">
+<meta name="description" content="GoldFlow AI Elite — transparent XAUUSD market analysis and trade planning.">
 <link rel="manifest" href="./manifest.webmanifest">
-<link rel="icon" href="./icon.svg" type="image/svg+xml">
-<title>GoldFlow AI · XAUUSD</title>
-<style>
-:root{color-scheme:dark;--bg:#080c17;--panel:#11182a;--panel2:#151e33;--line:#26324a;--text:#eef3ff;--muted:#93a2bf;--gold:#f2c66d;--green:#3bd6a0;--red:#ff687d;--blue:#8ab4ff}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#14203a 0,#080c17 48%);color:var(--text);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:env(safe-area-inset-top) 14px calc(22px + env(safe-area-inset-bottom))}
-.wrap{max-width:900px;margin:auto}.top{display:flex;justify-content:space-between;align-items:center;padding:20px 2px 16px;gap:12px}.brand{display:flex;gap:10px;align-items:center}.logo{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,#f7dc91,#b77b27);display:grid;place-items:center;color:#1a1720;font-size:23px;font-weight:900}.eyebrow{font-size:11px;letter-spacing:1.8px;color:var(--gold);font-weight:800}.brand h1{font-size:21px;margin:1px 0 0}.status{font-size:11px;border:1px solid var(--line);padding:7px 9px;border-radius:99px;color:var(--muted);white-space:nowrap}.status:before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin:0 6px 1px 0}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{background:linear-gradient(145deg,rgba(21,30,51,.96),rgba(13,19,34,.96));border:1px solid var(--line);border-radius:18px;padding:16px;min-width:0;box-shadow:0 10px 30px #0002}.wide{grid-column:1/-1}.label{color:var(--muted);font-size:11px;letter-spacing:1.1px;text-transform:uppercase;font-weight:700}.price{font-size:32px;font-weight:800;letter-spacing:-1px;margin:5px 0 2px}.change{font-size:12px;color:var(--muted)}.gold{color:var(--gold)}.section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:10px}.section-title h2{font-size:15px;margin:0}.pill{font-size:10px;border-radius:99px;padding:5px 8px;background:#202b42;color:var(--muted);white-space:nowrap}.signal{display:flex;justify-content:space-between;align-items:center;gap:10px}.signal-word{font-size:27px;font-weight:900;letter-spacing:.4px}.neutral{color:var(--gold)}.buy{color:var(--green)}.sell{color:var(--red)}.meter{height:6px;background:#27334a;border-radius:99px;overflow:hidden;margin:10px 0 5px}.meter span{display:block;height:100%;width:0;background:var(--gold);transition:width .3s}.small{font-size:12px;color:var(--muted)}.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:13px}.stat{padding:11px;background:#0b1221;border:1px solid #202b40;border-radius:12px}.stat b{display:block;font-size:16px;margin-top:3px;overflow-wrap:anywhere}.levels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.level{padding:11px;border:1px solid var(--line);border-radius:12px;background:#0c1322}.level b{display:block;margin-top:4px;font-size:16px}.reason{margin:8px 0 0;padding-left:18px;color:#c2cde2;font-size:13px}.reason li{margin:5px 0}.btnrow{display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid #35425d;background:#1b2740;color:var(--text);border-radius:11px;padding:10px 13px;font-weight:700;font-size:12px;cursor:pointer}.btn.primary{background:var(--gold);color:#1b1720;border-color:var(--gold)}.chartbox{height:390px;overflow:hidden;border-radius:12px;background:#0a1020}.chartbox iframe{width:100%;height:100%;border:0}.footer{padding:18px 4px 6px;color:var(--muted);font-size:11px}.warning{border-color:#66522d;background:linear-gradient(135deg,#241d12,#141827)}.warning p{font-size:12px;color:#d9cba9;margin:7px 0 0}.source{color:var(--blue);text-decoration:none}.hidden{display:none}@media(max-width:480px){.grid{gap:9px}.card{padding:13px;border-radius:15px}.price{font-size:28px}.brand h1{font-size:18px}.chartbox{height:330px}.signal-word{font-size:23px}.top{padding-top:16px}.stats{gap:8px}.level b{font-size:14px}}
-</style>
+<link rel="icon" href="./icons/icon-192.png">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+<link rel="stylesheet" href="./styles.css">
+<title>GoldFlow AI Elite</title>
 </head>
 <body>
-<div class="wrap">
-<header class="top"><div class="brand"><div class="logo">₲</div><div><div class="eyebrow">MARKET INTELLIGENCE</div><h1>GoldFlow AI</h1></div></div><div class="status" id="status">Connecting</div></header>
-<main class="grid">
-<section class="card"><div class="label">XAU · Spot gold / USD</div><div class="price" id="price">Loading…</div><div class="change" id="priceMeta">Fetching public spot quote</div><div class="small" style="margin-top:12px">Last update <span id="updated">—</span></div></section>
-<section class="card"><div class="label">Setup engine</div><div class="signal" style="margin-top:10px"><div class="signal-word neutral" id="signal">WAIT</div><span class="pill" id="timeframe">M5 MODEL</span></div><div class="meter"><span id="confidenceBar"></span></div><div class="small"><span id="confidence">0</span>% model strength · not a win probability</div><div class="small" id="signalSummary" style="margin-top:9px">Collecting price observations…</div></section>
-<section class="card wide"><div class="section-title"><h2>Trade plan</h2><span class="pill" id="planState">WAIT FOR DATA</span></div><div class="levels">
-<div class="level"><span class="label">Entry zone</span><b id="entry">—</b></div><div class="level"><span class="label">Stop loss</span><b id="sl">—</b></div><div class="level"><span class="label">Take profit 1</span><b id="tp1">—</b></div><div class="level"><span class="label">Take profit 2</span><b id="tp2">—</b></div></div>
-<div class="stats"><div class="stat"><span class="label">Short-term momentum</span><b id="momentum">Insufficient data</b></div><div class="stat"><span class="label">Observed range</span><b id="range">—</b></div><div class="stat"><span class="label">Reward / risk to TP1</span><b id="rr">—</b></div><div class="stat"><span class="label">Observations</span><b id="samples">0</b></div></div><ul class="reason" id="reasons"><li>Waiting for market observations.</li></ul></section>
-<section class="card wide"><div class="section-title"><h2>Live chart</h2><span class="pill">TradingView</span></div><div class="chartbox"><iframe title="XAUUSD chart" src="https://s.tradingview.com/widgetembed/?frameElementId=goldflow_chart&symbol=OANDA%3AXAUUSD&interval=5&hidesidetoolbar=1&symboledit=0&saveimage=0&toolbarbg=%230b1020&theme=dark&style=1&timezone=Etc%2FUTC&withdateranges=1&hideideas=1&studies=%5B%5D&hidevolume=0&allow_symbol_change=0&details=0&hotlist=0&calendar=0" loading="lazy" allowtransparency="true" scrolling="no"></iframe></div><p class="small">Chart supplied by TradingView. The chart's feed and the quote source below may differ slightly.</p></section>
-<section class="card wide"><div class="section-title"><h2>Market context</h2><span class="pill">Transparent model</span></div><p class="small" id="context">This first version uses sampled public spot prices. It does not yet have bid/ask trades, a footprint feed, or a real order book.</p><div class="btnrow"><button class="btn primary" id="refresh">Refresh quote</button><button class="btn" id="reset">Reset observations</button><button class="btn" id="install" hidden>Install app</button></div></section>
-<section class="card wide warning"><div class="section-title"><h2>Important data limitation</h2><span class="pill">Read before trading</span></div><p>Spot-price polling cannot calculate true bid/ask delta, institutional absorption, or a reliable footprint. Signals are experimental decision support, not financial advice. Do not place a live trade based only on this prototype. Verify prices, spread, and levels in your broker terminal.</p></section>
+<header class="topbar">
+  <div class="brand"><span class="mark">G</span><div><strong>GOLDFLOW <em>AI ELITE</em></strong><small>MARKET STRUCTURE · TRADE PLANNING</small></div></div>
+  <div class="status"><span id="connectionDot" class="dot"></span><span id="connectionText">Checking feed…</span></div>
+</header>
+<main>
+  <section class="hero panel">
+    <div><p class="eyebrow">XAUUSD · SPOT GOLD</p><h1>Trade the evidence.<br><span>Protect the downside.</span></h1><p class="muted">A transparent analysis workspace. No fabricated order flow. No automated execution.</p></div>
+    <div class="pricebox"><small>Latest quote</small><div id="price" class="price">—</div><div id="priceMeta" class="muted">No verified quote yet</div><button id="refreshBtn" class="button secondary">Refresh data</button></div>
+  </section>
+  <div id="notice" class="notice">Connecting to public market data. Quotes can be delayed or unavailable; cached values are never presented as live.</div>
+  <nav class="tabs" aria-label="Workspace sections">
+    <button class="tab active" data-tab="overview">Overview</button><button class="tab" data-tab="risk">Risk desk</button><button class="tab" data-tab="backtest">Backtest</button><button class="tab" data-tab="data">Data & settings</button>
+  </nav>
+  <section id="tab-overview" class="tabpage">
+    <div class="grid two">
+      <article class="panel"><div class="panelhead"><h2>Market intelligence</h2><span class="tag">CANDLE-BASED</span></div><div id="marketSummary" class="empty">Waiting for fresh market data…</div><div id="structureGrid" class="metricgrid"></div></article>
+      <article class="panel"><div class="panelhead"><h2>Decision engine</h2><span id="decisionTag" class="tag neutral">NO TRADE</span></div><div id="decisionTitle" class="decision">Insufficient verified evidence</div><p id="decisionReason" class="muted">A candidate requires completed candles, clear structure, and adequate reward-to-risk. No signal is forced.</p><div id="setupDetails" class="setupdetails"></div></article>
+    </div>
+    <div class="grid two">
+      <article class="panel"><div class="panelhead"><h2>BUY candidate</h2><span class="tag buy">LONG</span></div><div id="buyCard" class="empty">No confirmed setup.</div></article>
+      <article class="panel"><div class="panelhead"><h2>SELL candidate</h2><span class="tag sell">SHORT</span></div><div id="sellCard" class="empty">No confirmed setup.</div></article>
+    </div>
+    <article class="panel"><div class="panelhead"><h2>Market data integrity</h2><span id="freshness" class="tag neutral">UNVERIFIED</span></div><div id="dataSummary" class="muted">The application will identify the selected feed and its limitations.</div><div class="metricgrid" id="dataMetrics"></div></article>
+  </section>
+  <section id="tab-risk" class="tabpage hidden">
+    <article class="panel"><div class="panelhead"><h2>Account & risk controls</h2><span class="tag">PLANNING ONLY</span></div>
+      <div class="formgrid">
+        <label>Account balance<input id="balance" type="number" min="0" step="0.01" value="1000"></label>
+        <label>Current equity<input id="equity" type="number" min="0" step="0.01" value="1000"></label>
+        <label>Currency<select id="currency"><option>ZAR</option><option>USD</option><option>EUR</option><option>GBP</option></select></label>
+        <label>Risk per trade (%)<input id="riskPct" type="number" min="0.01" max="5" step="0.01" value="0.5"></label>
+        <label>Daily profit target<input id="target" type="number" min="0" step="0.01" value="100"></label>
+        <label>Daily maximum loss<input id="dailyLoss" type="number" min="0" step="0.01" value="30"></label>
+        <label>Maximum total drawdown<input id="maxDD" type="number" min="0" step="0.01" value="100"></label>
+        <label>Today's realized P/L<input id="dayPL" type="number" step="0.01" value="0"></label>
+        <label>Current equity peak<input id="peak" type="number" min="0" step="0.01" value="1000"></label>
+        <label>Max simultaneous positions<input id="maxPositions" type="number" min="1" max="20" step="1" value="1"></label>
+        <label>Max trades per day<input id="maxTrades" type="number" min="1" max="100" step="1" value="3"></label>
+        <label>Trades taken today<input id="tradesTaken" type="number" min="0" max="100" step="1" value="0"></label>
+        <label>Minimum reward:risk<input id="minRR" type="number" min="1" max="10" step="0.1" value="2"></label>
+        <label>Maximum consecutive losses<input id="maxLosses" type="number" min="1" max="20" step="1" value="3"></label>
+        <label>Current consecutive losses<input id="losses" type="number" min="0" max="20" step="1" value="0"></label>
+        <label>Daily stop threshold (optional)<input id="stopThreshold" type="number" min="0" step="0.01" value="0"></label>
+      </div>
+      <div class="buttonrow"><button id="calcRisk" class="button">Calculate risk</button><button id="resetRisk" class="button secondary">Reset example</button></div>
+      <div id="riskWarnings" class="warnings"></div><div id="riskResults" class="resultgrid"></div>
+      <details><summary>Calculation formulas</summary><ul><li>Monetary risk = current equity × risk percentage ÷ 100.</li><li>Equity drawdown = max(0, equity peak − current equity); drawdown % = drawdown ÷ peak × 100.</li><li>Remaining daily loss = max(0, daily maximum loss + today's realized P/L) when P/L is negative; this simple tracker does not include unentered open-position exposure.</li><li>Required wins are hypothetical: target ÷ assumed net profit per winning trade. They do not imply a forecast.</li><li>Position sizing is intentionally withheld unless instrument contract size, tick value, stop distance, and conversion are verified.</li></ul></details>
+    </article>
+  </section>
+  <section id="tab-backtest" class="tabpage hidden">
+    <article class="panel"><div class="panelhead"><h2>Candle-based backtest</h2><span class="tag">NO ORDER-FLOW CLAIM</span></div><p class="muted">Import OHLC candles as CSV with columns: time,open,high,low,close (volume optional). Use chronological holdout. This basic engine tests a transparent breakout/reclaim proxy, not genuine aggressor-side flow. Spread and slippage are deducted in price units per round trip.</p>
+      <label class="filelabel">Choose candle CSV<input id="csvFile" type="file" accept=".csv,text/csv"></label>
+      <div class="formgrid compact"><label>Lookback bars<input id="lookback" type="number" min="3" max="100" value="20"></label><label>Stop distance (price units)<input id="btStop" type="number" min="0.01" step="0.01" value="5"></label><label>Target distance (price units)<input id="btTarget" type="number" min="0.01" step="0.01" value="10"></label><label>Round-trip costs (price units)<input id="btCosts" type="number" min="0" step="0.01" value="0.5"></label><label>Training share (%)<input id="trainShare" type="number" min="50" max="90" value="70"></label></div>
+      <button id="runBacktest" class="button" disabled>Run backtest</button><div id="btStatus" class="muted">No CSV loaded.</div><div id="btResults" class="resultgrid"></div><p class="tiny muted">Assumption: signals are generated using prior bars only; a single position is simulated and stops/targets are evaluated on subsequent bars. If both are touched in one bar, the conservative stop-first assumption is used. Candle data cannot validate CVD, footprint, DOM, or absorption.</p>
+    </article>
+  </section>
+  <section id="tab-data" class="tabpage hidden">
+    <article class="panel"><div class="panelhead"><h2>Data sources & settings</h2><span class="tag">PROVIDER-INDEPENDENT</span></div>
+      <label>Public quote provider<select id="provider"><option value="goldapi">GoldAPI public demo route (may be blocked / require key)</option><option value="metals">Metals-API style endpoint (requires provider credentials)</option><option value="manual">Manual / disconnected</option></select></label>
+      <p class="muted">This GitHub Pages build has no secret-bearing backend. Public APIs frequently require a key, impose CORS/rate limits, or restrict client-side calls. If no provider works, the app remains honestly disconnected. Do not put private keys in this repository.</p>
+      <div class="buttonrow"><button id="saveSettings" class="button">Save settings</button><button id="clearCache" class="button secondary">Clear local preferences</button></div>
+      <h3>What the data can and cannot tell you</h3><ul class="source-list">
+        <li><strong>Retail spot XAUUSD quotes:</strong> broker-specific OTC bid/ask stream; not a consolidated global tape. Tick direction is not equivalent to exchange aggressor classification.</li>
+        <li><strong>Public candle/quote APIs:</strong> useful for indicative price context when accessible, but availability, delay, history, CORS, and licensing vary. This build does not fabricate a live price when access fails.</li>
+        <li><strong>COMEX GC/MGC futures:</strong> exchange-traded volume and aggressor-side data may support genuine futures order-flow analysis from a suitable feed. Futures are not spot XAUUSD; compare only after calculating a timestamp-aligned basis (futures − spot), accounting for contract expiry and roll.</li>
+        <li><strong>CVD / footprint / DOM / absorption:</strong> disabled unless a compatible feed supplies classified trades or order-book events. Candle volume and candle direction are not a substitute.</li>
+        <li><strong>Sessions:</strong> session windows must be interpreted in a timezone-aware market calendar; daylight-saving changes affect London/New York. This static build labels times conservatively and avoids asserting precise session levels without adequate candles.</li>
+      </ul>
+      <div id="settingsStatus" class="muted"></div>
+    </article>
+  </section>
+  <footer><span>GOLDFLOW AI ELITE</span><span>MACRO · STRUCTURE · RISK</span><span>Not financial advice</span></footer>
 </main>
-<footer class="footer">GoldFlow AI · prototype v0.1 · Quote source: public Gold API endpoint when available. If the feed fails, the app will show an error instead of inventing a price. Not affiliated with a broker.</footer>
-</div>
-<script>
-const $=id=>document.getElementById(id);
-let observations=[], timer=null, deferredInstall=null, lastPrice=null;
-const fmt=n=>Number.isFinite(n)?n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}):'—';
-function setStatus(text,ok=false){$('status').textContent=text;$('status').style.color=ok?'#3bd6a0':'#93a2bf';}
-async function getQuote(){
-  $('refresh').disabled=true;
-  try{
-    const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),8000);
-    const res=await fetch('https://api.gold-api.com/price/XAU',{cache:'no-store',signal:controller.signal});clearTimeout(timeout);
-    if(!res.ok)throw new Error('Quote provider returned '+res.status);
-    const data=await res.json();
-    const price=Number(data.price);
-    if(!Number.isFinite(price)||price<=0)throw new Error('Invalid quote payload');
-    const now=Date.now();
-    if(!observations.length||now-observations[observations.length-1].t>=8000) observations.push({p:price,t:now});
-    observations=observations.slice(-180);lastPrice=price;
-    $('price').textContent='$'+fmt(price);$('priceMeta').textContent='Public spot quote · '+(data.name||'XAU');$('updated').textContent=new Date(now).toLocaleTimeString();
-    setStatus('Feed connected',true);analyze();
-  }catch(e){setStatus('Feed unavailable');$('priceMeta').textContent='Could not fetch live quote. Check connection or retry.';$('signalSummary').textContent='No current quote; signals disabled.';$('signal').textContent='WAIT';$('signal').className='signal-word neutral';$('planState').textContent='NO LIVE DATA';}
-  finally{$('refresh').disabled=false;}
-}
-function analyze(){
-  const n=observations.length;$('samples').textContent=n;
-  if(n<8){$('signal').textContent='WAIT';$('signal').className='signal-word neutral';$('confidence').textContent='0';$('confidenceBar').style.width='0%';$('signalSummary').textContent='Building a short rolling price sample. Keep the app open.';$('planState').textContent='COLLECTING';$('momentum').textContent='Insufficient data';$('range').textContent='—';$('reasons').innerHTML='<li>Need at least 8 observations before evaluating momentum.</li><li>Polling is not a substitute for tick-by-tick market data.</li>';return;}
-  const prices=observations.map(x=>x.p), cur=prices[n-1], old=prices[Math.max(0,n-6)], recent=prices.slice(-12);
-  const move=cur-old, diffs=[];for(let i=1;i<recent.length;i++)diffs.push(Math.abs(recent[i]-recent[i-1]));
-  const avgStep=diffs.reduce((a,b)=>a+b,0)/Math.max(1,diffs.length);
-  const hi=Math.max(...recent),lo=Math.min(...recent),range=hi-lo;
-  const threshold=Math.max(avgStep*1.7,cur*0.000035);
-  const direction=move>threshold?'BUY':move< -threshold?'SELL':'WAIT';
-  const strength=Math.min(85,Math.round(25+Math.abs(move)/Math.max(threshold,.01)*12));
-  $('signal').textContent=direction;$('signal').className='signal-word '+(direction==='BUY'?'buy':direction==='SELL'?'sell':'neutral');
-  $('confidence').textContent=direction==='WAIT'?Math.min(30,Math.round(100*Math.abs(move)/Math.max(threshold,.01))):strength;
-  $('confidenceBar').style.width=$('confidence').textContent+'%';
-  $('momentum').textContent=(move>0?'+':'')+fmt(move)+' USD '+(move>0?'up':move<0?'down':'flat');
-  $('range').textContent=fmt(lo)+' – '+fmt(hi);
-  const buffer=Math.max(avgStep*1.5,cur*0.00015), risk=Math.max(range*.55,buffer*2);
-  if(direction==='WAIT'){
-    $('entry').textContent='—';$('sl').textContent='—';$('tp1').textContent='—';$('tp2').textContent='—';$('rr').textContent='—';$('planState').textContent='NO TRADE';
-    $('signalSummary').textContent='No clear short-term push in the sampled prices.';
-  }else{
-    const entry=cur, sl=direction==='BUY'?cur-risk:cur+risk,tp1=direction==='BUY'?cur+risk*1.4:cur-risk*1.4,tp2=direction==='BUY'?cur+risk*2:cur-risk*2;
-    $('entry').textContent=fmt(entry);$('sl').textContent=fmt(sl);$('tp1').textContent=fmt(tp1);$('tp2').textContent=fmt(tp2);$('rr').textContent='1.4 : 1';$('planState').textContent='EXPERIMENTAL';
-    $('signalSummary').textContent=direction+' bias from recent sampled price movement only — not order-flow confirmation.';
-  }
-  $('reasons').innerHTML=`<li>Sampled move over recent observations: <b>${move>0?'+':''}${fmt(move)} USD</b>.</li><li>Recent sampled range: <b>${fmt(range)} USD</b>; average adjacent price change: <b>${fmt(avgStep)} USD</b>.</li><li>${direction==='WAIT'?'No directional threshold crossed; stay flat.':'Directional momentum threshold crossed, but this is not a verified order-flow setup.'}</li><li>Stop and target distances are provisional volatility estimates, not support/resistance levels.</li>`;
-  $('context').textContent='Model uses public spot-price snapshots and a simple momentum/volatility heuristic. It does NOT measure aggressor-side volume, order-book depth, CVD, footprint imbalances, or institutional positions.';
-}
-$('refresh').addEventListener('click',getQuote);
-$('reset').addEventListener('click',()=>{observations=[];$('samples').textContent='0';$('signal').textContent='WAIT';$('planState').textContent='COLLECTING';$('signalSummary').textContent='Observations reset. Collecting new prices…';getQuote();});
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;$('install').hidden=false;});
-$('install').addEventListener('click',async()=>{if(!deferredInstall)return;deferredInstall.prompt();await deferredInstall.userChoice;deferredInstall=null;$('install').hidden=true;});
-if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
-getQuote();timer=setInterval(getQuote,15000);
-</script>
+<script src="./app.js" defer></script>
 </body></html>
